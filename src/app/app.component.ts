@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as actions from './reduxBasic/counter.actions';
+
+interface Appstate{
+  count: number
+}
 
 @Component({
   selector: 'app-root',
@@ -6,17 +12,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  counter!: number;
+  cont!: number;
 
-  constructor(){
-    this.counter = 10;
+  hello = 'Hello world';
+
+  constructor( private store: Store<Appstate > ){
+    this.store.subscribe( state =>{
+      this.cont = state.count;
+    });
   }
 
   increment(){
-    this.counter++;
+    this.store.dispatch( actions.increment() );
   }
   decrement(){
-    this.counter--;
+    this.store.dispatch( actions.decrement() );
   }
 
 }
