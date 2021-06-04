@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HijoComponent } from './reduxBasic/hijo/hijo.component';
+import { NietoComponent } from './reduxBasic/nieto/nieto.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HijoComponent,
+    NietoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    // AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
