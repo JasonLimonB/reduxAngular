@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 // NGRX
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { counterReducer } from './reduxBasic/counter.reducer';
 
-// import { AppRoutingModule } from './app-routing.module';
+import { environment } from 'src/environments/environment';
+
 import { AppComponent } from './app.component';
 import { HijoComponent } from './reduxBasic/hijo/hijo.component';
 import { NietoComponent } from './reduxBasic/nieto/nieto.component';
@@ -18,8 +20,11 @@ import { NietoComponent } from './reduxBasic/nieto/nieto.component';
   ],
   imports: [
     BrowserModule,
-    StoreModule.forRoot({ count: counterReducer })
-    // AppRoutingModule
+    StoreModule.forRoot({ count: counterReducer }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

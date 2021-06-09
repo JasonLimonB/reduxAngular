@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Appstate } from './app.reducers';
 import * as actions from './reduxBasic/counter.actions';
 
-interface Appstate{
-  count: number
-}
+
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ export class AppComponent {
 
   hello = 'Hello world';
 
-  constructor( private store: Store<Appstate > ){
+  constructor( private store: Store<Appstate> ){
     this.store.subscribe( state =>{
       this.cont = state.count;
     });

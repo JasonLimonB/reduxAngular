@@ -1,18 +1,28 @@
-import { Action } from "@ngrx/store";
-import { decrement, increment } from "./counter.actions";
+import { createReducer, on } from "@ngrx/store";
+import { decrement, dividedby, increment, reset, times } from "./counter.actions";
 
 
-export function counterReducer( state: number = 10, action: Action ){
+// export function counterReducer( state: number = 10, action: Action ){
+//     switch( action.type ){
+//         case increment.type:
+//             return state + 1;
+//         case decrement.type:
+//             return state - 1;
+//         default:
+//             return state;
+//     }
+// }
 
-    switch( action.type ){
-        case increment.type:
-            return state + 1;
-        case decrement.type:
-            return state - 1;
+export const initialState = 20;
 
+const _countereducer = createReducer( initialState,
+    on( increment,  (state) => state + 1 ),
+    on( decrement,  (state) => state - 1 ),
+    on( times,      (state, {num})=> state * num),
+    on( dividedby,  (state, {num})=>state / num ),
+    on( reset,      ()=> initialState )
+);
 
-        default:
-            return state;
-    }
-
+export function counterReducer( state: any, action: any ){
+    return _countereducer(state, action);
 }
